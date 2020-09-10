@@ -21,6 +21,7 @@ parser.add_argument("host", help="host")
 parser.add_argument("password", help="yealink phone admin password")
 parser.add_argument("certfile", help="certfile should contain both cert and key")
 parser.add_argument("--headless", action="store_true", help="run headless")
+parser.add_argument("--keep-open", action="store_true", help="keep browser window open")
 parser.add_argument("--insecure", action="store_true", help="ignore invalid ssl cert on phone (useful for first setup)")
 parser.add_argument("--no-screenshots", action="store_false", help="disable saving screenshots for each step")
 parser.add_argument("--debug", action="store_true", help="debug output")
@@ -115,4 +116,5 @@ WebDriverWait(driver, 10).until(
 )
 driver.switch_to.alert.accept()
 
-driver.quit()
+if not args.keep_open:
+  driver.quit()
