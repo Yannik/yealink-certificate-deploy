@@ -53,8 +53,9 @@ driver.get("https://" + args.host)
 stepshot(driver, screenshots, 1)
 
 logger.info("Entering username/password and submitting form")
-username_field = driver.find_element_by_css_selector('input#idUsername')
-username_field.send_keys("admin")
+WebDriverWait(driver, 10).until(
+    EC.presence_of_element_located((By.CSS_SELECTOR, 'input#idUsername'))
+).send_keys("admin")
 password_field = driver.find_element_by_css_selector('input#idPassword')
 password_field.send_keys(args.password)
 password_field.send_keys(Keys.RETURN)
