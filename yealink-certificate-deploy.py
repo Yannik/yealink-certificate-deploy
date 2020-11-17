@@ -116,5 +116,9 @@ WebDriverWait(driver, 10).until(
 )
 driver.switch_to.alert.accept()
 
+WebDriverWait(driver, 10).until(
+    EC.visibility_of_element_located((By.CSS_SELECTOR, 'div.notice-info'))
+)
+
 if not args.keep_open:
   driver.quit()
