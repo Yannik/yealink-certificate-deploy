@@ -57,7 +57,7 @@ logger.info("Entering username/password and submitting form")
 WebDriverWait(driver, 10).until(
     EC.presence_of_element_located((By.CSS_SELECTOR, 'input#idUsername'))
 ).send_keys("admin")
-password_field = driver.find_element_by_css_selector('input#idPassword')
+password_field = driver.find_element(By.CSS_SELECTOR, 'input#idPassword')
 password_field.send_keys(args.password)
 password_field.send_keys(Keys.RETURN)
 stepshot(driver, screenshots, 2)
@@ -80,7 +80,7 @@ fileinput = WebDriverWait(driver, 10).until(
 ).send_keys(os.path.abspath(args.certfile))
 stepshot(driver, screenshots, 4)
 
-driver.find_elements_by_css_selector('button#btn_upload')[0].click()
+driver.find_elements(By.CSS_SELECTOR, 'button#btn_upload')[0].click()
 
 logger.info("Waiting for upload to complete")
 upload_result = WebDriverWait(driver, 10).until(
@@ -93,7 +93,7 @@ stepshot(driver, screenshots, 5)
 logger.info("Upload result: " + upload_result.text)
 
 # page automatically reloads after upload
-old_page=driver.find_element_by_tag_name('html')
+old_page=driver.find_element(By.TAG_NAME, 'html')
 WebDriverWait(driver, 10).until(
     EC.staleness_of(old_page)
 )
@@ -101,7 +101,7 @@ stepshot(driver, screenshots, 6)
 logger.info("Page reload completed.")
 
 logger.info("Opening Settings page")
-driver.find_element_by_xpath('//label[contains(@onclick, "settings-preference")]').click()
+driver.find_element(By.XPATH, '//label[contains(@onclick, "settings-preference")]').click()
 logger.info("Opening upgrade page")
 WebDriverWait(driver, 10).until(
     EC.visibility_of_element_located((By.XPATH, '//label[contains(@onclick, "settings-upgrade")]'))
