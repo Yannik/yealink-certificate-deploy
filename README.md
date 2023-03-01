@@ -4,6 +4,7 @@ It can alternatively done through config key `static.server_certificates.url`, b
 
 Confirmed working phone models:
   - Yealink T46S
+  - Yealink T54W
 
 Usage:
 ```
